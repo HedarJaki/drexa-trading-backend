@@ -1,4 +1,4 @@
-package otpchallenge
+package domain
 
 import (
 	"fmt"
@@ -16,6 +16,27 @@ type OtpChallenge struct {
 	ExpiresAt    time.Time
 	AttemptsLeft int
 }
+
+// func GenerateOTP() string {
+// 	rand.Seed(time.Now().UnixNano())
+// 	return fmt.Sprintf("%04d", rand.Intn(10000))
+// }
+
+// func GenerateOTPforgotpw() string {
+// 	rand.Seed(time.Now().UnixNano())
+// 	return fmt.Sprintf("%06d", rand.Intn(1000000))
+// }
+
+// func HasMX(email string) bool {
+// 	part := strings.Split(email, "@")
+// 	if len(part) != 2 {
+// 		return false
+// 	}
+
+// 	domain := part[1]
+// 	mx, err := net.LookupMX(domain)
+// 	return err == nil && len(mx) > 0
+// }
 
 func Generate(target string, purpose string) *OtpChallenge {
 	hashotp, err := bcrypt.GenerateFromPassword([]byte(GenerateOTP()), 10)

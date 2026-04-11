@@ -1,4 +1,4 @@
-package emailpasswordauth
+package domain
 
 import (
 	"errors"
@@ -7,10 +7,9 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-type EmailPassword struct {
-	Email             string
-	PasswordHash      string
-	PasswordUpdatedAt time.Time
+type AuthProvider interface {
+	Authenticate() User
+	GetProviderType() string
 }
 
 func NewEmailPasswordAuth(email, password string) (*EmailPassword, error) {
@@ -37,7 +36,3 @@ func (acc *EmailPassword) UpdatePassword(pw string) error {
 	acc.PasswordHash = string(hash)
 	return nil
 }
-
-// func (acc EmailPassword) Authenticate() user.User{
-
-// }

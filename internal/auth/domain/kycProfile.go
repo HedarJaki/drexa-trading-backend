@@ -1,4 +1,4 @@
-package kycprofile
+package domain
 
 import "time"
 
